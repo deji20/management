@@ -16,7 +16,7 @@ jobs:
         run: sudo apt-get install -f
       - uses: actions/checkout@v2
       - name: Creating image
-        run: docker build -t $IMAGE .
+        run: docker build -t ${{ env.image }} .
       - name: Sending image to server
         uses: ./.github/actions/send-image
         with:
