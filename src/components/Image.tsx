@@ -21,9 +21,14 @@ export default function Image(props: ImageProps){
     //changes image styling depending on if it uses the default blank image or not
     if(props.pictures && props.pictures?.length !== 0) {
         if(typeof props.pictures[imageNr] === "string") image = <img src={`${props.pictures[imageNr]}`} alt={"straight"} className={"place-self-center max-h-full"}/>
-        else image = <img src={props.pictures[imageNr].path} alt={props.pictures[imageNr].alt} className={"place-self-center max-h-full"} onClick={props.onClick} onError={fallBack}/>
+        else{
+            const img = props.pictures[imageNr] as Picture;
+            image = <img src={img.path} alt={img.alt} className={"place-self-center max-h-full"} onClick={props.onClick} onError={fallBack}/>
+        }
     }
-    else{ image = <img src={`/api/icons/blankImage.svg`} alt={"Not Found"} className={"place-self-center h-1/6"} onClick={props.onClick}/>}
+    else{ 
+        image = <img src={`/api/icons/blankImage.svg`} alt={"Not Found"} className={"place-self-center h-1/6"} onClick={props.onClick}/>
+    }
     
     
     return (
