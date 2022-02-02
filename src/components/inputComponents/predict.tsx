@@ -42,8 +42,7 @@ export default function PredictInput(props: PredictProps){
                                 onClick={ (event) => {
                                     isVisible(false);
                                     props.onClick && props.onClick(event)
-                                }}
-                                >
+                                }}>
                                 {result}
                             </li>
                         )

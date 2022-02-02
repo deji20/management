@@ -29,9 +29,10 @@ export default function TokenListInput(props: InputProps){
         //reset input
         input.value = "";
     }
-    const clickEvent = (e: MouseEvent) => {
-        if(e.target && e.target.innerText){
-            let value = e.target.innerText
+    const clickEvent = (e: MouseEvent<HTMLLIElement>) => {
+        const item = e.target as HTMLLIElement;
+        if(item && item.innerText){
+            let value = item.innerText
             const newArr = [...tokens, value]
             setToken(newArr);
 
