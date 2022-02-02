@@ -15,17 +15,14 @@ jobs:
       - name: Updating System
         run: sudo apt-get install -f
       - uses: actions/checkout@v2
-
       - name: Creating image
         run: docker build -t $IMAGE .
-      
       - name: Sending image to server
       - uses: ./.github/actions/send-image
         with:
           image: ${{ env.image }}
           destination: ${{ secrets.STAGING_DESTINATION }}
           key: ${{ secrets.STAGING_KEY }}
-
       - name: Starting Image
       - uses: ./actions/start-image
         with:
