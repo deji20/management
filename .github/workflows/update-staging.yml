@@ -26,7 +26,7 @@ jobs:
       - name: Starting Image
         uses: ./.github/actions/start-image
         with:
-          service: api
+          service: management
           image: ${{ env.image }}
           destination: ${{ secrets.STAGING_DESTINATION }}
           key: ${{ secrets.STAGING_KEY }}
