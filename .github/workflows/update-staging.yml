@@ -17,8 +17,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Creating image
         run: docker build -t ${{ env.image }} .
-      - name: print files
-        run: ls -ar ./.github
       - name: Sending image to server
         uses: ./.github/actions/send-image
         with:
