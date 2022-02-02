@@ -18,13 +18,13 @@ jobs:
       - name: Creating image
         run: docker build -t $IMAGE .
       - name: Sending image to server
-      - uses: ./.github/actions/send-image
+        uses: ./.github/actions/send-image
         with:
           image: ${{ env.image }}
           destination: ${{ secrets.STAGING_DESTINATION }}
           key: ${{ secrets.STAGING_KEY }}
       - name: Starting Image
-      - uses: ./actions/start-image
+        uses: ./.githubactions/start-image
         with:
           service: api
           image: ${{ env.image }}
