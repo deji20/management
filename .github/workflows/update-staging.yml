@@ -18,7 +18,7 @@ jobs:
       - name: Creating image
         run: docker build -t ${{ env.image }} .
       - name: print files
-        run: ls -ar
+        run: ls -ar ./.github
       - name: Sending image to server
         uses: ./.github/actions/send-image
         with:
