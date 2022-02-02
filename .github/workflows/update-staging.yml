@@ -23,6 +23,8 @@ jobs:
           image: ${{ env.image }}
           destination: ${{ secrets.STAGING_DESTINATION }}
           key: ${{ secrets.STAGING_KEY }}
+      - name: print files
+        run: ls -r
       - name: Starting Image
         uses: ./.github/actions/start-image
         with:
