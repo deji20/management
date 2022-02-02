@@ -17,14 +17,14 @@ jobs:
       - uses: actions/checkout@v2
       - name: Creating image
         run: docker build -t ${{ env.image }} .
+      - name: print files
+        run: ls -r
       - name: Sending image to server
         uses: ./.github/actions/send-image
         with:
           image: ${{ env.image }}
           destination: ${{ secrets.STAGING_DESTINATION }}
           key: ${{ secrets.STAGING_KEY }}
-      - name: print files
-        run: ls -r
       - name: Starting Image
         uses: ./.github/actions/start-image
         with:
