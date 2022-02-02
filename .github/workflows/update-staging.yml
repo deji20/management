@@ -1,0 +1,35 @@
+name: Update Staging
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - develop
+
+env:
+  image: ${{ github.event.repository.name }}:$GITHUB_SHA
+
+jobs:
+  create-image:
+    runs-on: ubuntu-latest
+    steps:    
+      - name: Updating System
+        run: sudo apt-get install -f
+      - uses: actions/checkout@v2
+
+      - name: Creating image
+        run: docker build -t $IMAGE .
+      
+      - name: Sending image to server
+      - uses: ./.github/actions/send-image
+        with:
+          image: ${{ env.image }}
+          destination: ${{ secrets.STAGING_DESTINATION }}
+          key: ${{ secrets.STAGING_KEY }}
+
+      - name: Starting Image
+      - uses: ./actions/start-image
+        with:
+          service: api
+          image: ${{ env.image }}
+          destination: ${{ secrets.STAGING_DESTINATION }}
+          key: ${{ secrets.STAGING_KEY }}

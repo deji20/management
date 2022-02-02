@@ -1,0 +1,21 @@
+name: "Start Image"
+inputs:
+  service:
+    description: name of the service where the image will run
+    required: true
+  image:
+    description: image name and tag in ":" seperated form (name:tag)
+    required: true
+  destination:
+    description: the server to send the file to, (example@ip-address)
+    required: true
+  key:
+    description: the servers ssh key
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: running send script
+      run: ${{ github.action_path }}/start.sh ${{ inputs.image }} "${{ inputs.service }}" ${{ inputs.destination }} "${{ inputs.key }}"
+      shell: bash

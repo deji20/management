@@ -1,0 +1,15 @@
+name: "Create Image"
+inputs:
+  image-name:
+    required: true
+  docker-user:
+    required: true
+  docker-pass:
+    required: true
+    
+runs:
+  using: "composite"
+  steps:
+    - name: Create image
+      run: ${{ github.action_path }}/create.sh ${{ inputs.docker-user }} ${{ inputs.docker-pass }} ${{ inputs.image-name }}
+      shell: bash
