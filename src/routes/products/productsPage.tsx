@@ -74,11 +74,10 @@ export default class ProductsPage extends Component<Object, PageState>{
                     this.setState({dialog: null});
                 }}
                 onSubmit={async (e) => {
-
-                    if(e.data){ 
-                        e.data.version.pictures = e.data.pictures;
-                        delete e.data.pictures;
-                        let data: any = e.data;
+                    let data: any = e.data;
+                    if(data){ 
+                        data.version.pictures = data.pictures;
+                        delete data.pictures;
                         if(!Array.isArray(data.version)) data.version = [data.version];
                         Api.post("/product", data); 
                         this.updateProducts();
