@@ -60,16 +60,16 @@ export default function TokenListInput(props: InputProps){
                             // else use a default token element
                             else{
                                 return (
-                                    <div key={i} className="border flex align-middle rounded-lg h-5 pl-1 m-1 bg-blue-200 cursor-auto">
-                                    <span className="relative flex flex-row ">
-                                        {props.submitable && <input readOnly hidden name={props.inputName} value={token}/>}
-                                        <span className="mx-1">{token}</span>
-                                        <div className="flex rounded-r-lg hover:scale-125 p-1 duration-500 transition-all bg-red-400  cursor-pointer" onClick={ () => removeToken(token) } >
-                                            <img src="/api/icons/delete.svg" alt="delete"/>
-                                        </div>
-                                    </span>
-                                </div>
-                            )}
+                                    <div key={i} className="border flex w-min align-middle rounded-lg h-5 pl-1 m-1 bg-blue-200 cursor-auto">
+                                        <span className="relative flex flex-row ">
+                                            {props.submitable && <input readOnly hidden name={props.inputName} value={token}/>}
+                                            <span className="mx-1">{token}</span>
+                                            <div className="flex rounded-r-lg hover:scale-125 duration-500 w-5 transition-all bg-red-400  cursor-pointer" onClick={ () => removeToken(token) } >
+                                                <img className="w-full" src="/api/icons/delete.svg" alt="delete"/>
+                                            </div>
+                                        </span>
+                                    </div>
+                                )}
                         })
                     }
                 </fieldset>

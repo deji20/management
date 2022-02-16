@@ -51,7 +51,6 @@ export default function ImageInput(props: InputProps){
         const input = (e.target as HTMLInputElement);
         if(input.files){
             //updating images state adding the new image
-            console.log(input.files)
             toBase64(input.files);
             props.onInput && props.onInput(input.files);
         }
@@ -61,7 +60,7 @@ export default function ImageInput(props: InputProps){
         <div className="relative flex justify-center align-middle bg-gray-50 rounded-sm m-1 cursor-pointer h-full">
             <input type="file" multiple={props.multiple} ref={inputRef} className="absolute w-full h-full hidden" onChange={fileUploadedEvent}/>
             { images.map( (imageInput, i) => <input name={props.inputName} key={i} type="hidden" value={JSON.stringify(imageInput)} /> ) }
-            <Image pictures={images} onClick={uploadFileEvent}/>
+            <Image className="place-self-center" pictures={images} onClick={uploadFileEvent}/>
         </div>
     )
 }

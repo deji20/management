@@ -1,5 +1,6 @@
 {
   "name": "management",
+  "homepage": "/management",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -30,7 +31,7 @@
     "postcss-cli": "^9.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=80 react-scripts start",
     "dev": "npm start",
     "slow": "nodemon -w src -e 'ts css tsx' -i -x npm run css && npm start",
     "build": "export NODE_OPTIONS=--openssl-legacy-provider; react-scripts build",

@@ -20,19 +20,19 @@ export default function Image(props: ImageProps){
     
     //changes image styling depending on if it uses the default blank image or not
     if(props.pictures && props.pictures?.length !== 0) {
-        if(typeof props.pictures[imageNr] === "string") image = <img src={`${props.pictures[imageNr]}`} alt={"straight"} className={"place-self-center max-h-full"}/>
+        if(typeof props.pictures[imageNr] === "string") image = <img src={`${props.pictures[imageNr]}`} alt={"straight"} className={`place-self-center max-h-full ${props.onClick && "cursor-pointer"}`}/>
         else{
             const img = props.pictures[imageNr] as Picture;
-            image = <img src={img.path} alt={img.alt} className={"place-self-center max-h-full"} onClick={props.onClick} onError={fallBack}/>
+            image = <img src={img.path} alt={img.alt} className={`place-self-center max-h-full ${props.onClick && "cursor-pointer"}`} onError={fallBack}/>
         }
     }
     else{ 
-        image = <img src={`/api/icons/blankImage.svg`} alt={"Not Found"} className={"place-self-center h-1/6"} onClick={props.onClick}/>
+        image = <img src={`/api/icons/blankImage.svg`} alt={"Not Found"} className={`place-self-center h-1/6 ${props.onClick && "cursor-pointer"}`} onClick={props.onClick}/>
     }
     
     
     return (
-        <div className={`relative flex ${props.className}`} >
+        <div className={`relative flex ${props.className}`} onClick={props.onClick}>
             <div className="absolute bottom-4 w-full flex flex-row justify-center">
                 {props.pictures && props.pictures.length > 1 && props.pictures.map((image, i) => {
                     return (<div key={i} className="h-2 w-2 mx-2 rounded-full bg-opacity-90 bg-white hover:bg-opacity-100" 

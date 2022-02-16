@@ -27,9 +27,6 @@ export default function ProductDetailsPage(props: ProductProps){
     if(props.product?.version?.length) version = props.product?.version[0];
     return (
         <div className="relative">
-            <button className="absolute right-0 top-1 text-white rounded-2xl z-50" onClick={deleteProduct}>
-                <img src="/api/icons/trash.svg" className="w-8 text-red-800" alt="Delete" />
-            </button>
             <div className="w-full h-full relative grid grid-cols-8 self-center rounded shadow-2xl bg-white">
                 <div className="flex flex-1 flex-col col-span-3 h-full">
                     <div className="max-h-64">
@@ -41,9 +38,11 @@ export default function ProductDetailsPage(props: ProductProps){
                             return categories.current?.filter(cat => cat.includes(input)) || [];
                         }} placeholder="Categories" submitable inputName="[categories]"/>
                     </div>
-                    <div className="flex flex-row w-full place-items-end place-self-end self-end p-4 bg-gray-400 rounded-b text-white ">
+                    <div className="flex flex-grow">
+                        <div className="flex flex-row w-full place-items-end place-self-end self-end p-4 bg-gray-400 rounded-b text-white ">
                             <input name="price" type="number" className="font-light bg-white bg-opacity-10 w-full text-right placeholder:text-white" placeholder="price" defaultValue={props.product?.price} />
                             <span> Kr</span>
+                        </div>
                     </div>
                 </div>
                 <div className="justify-self-center flex flex-col col-span-5 h-full w-full border">

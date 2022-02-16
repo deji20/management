@@ -10,21 +10,40 @@ class Api{
     }
 
     async get<Model>(url: string){
-        let res = await axios.get<Model>(`${this.apiEndpoint}${url}`);
-        return res.data;
+        try{
+            let res = await this.api.get<Model>(`${url}`);
+            return res.data;
+        }catch(err){
+            console.log(err);
+            throw err;
+        }
     }
     async post<Model>(url: string, data: Model, options: AxiosRequestConfig = {}){
-        let res = await this.api.post(`${url}`, data, options)
-
-        return res.data;
+        try{
+            let res = await this.api.post(`${url}`, data, options)
+            return res.data;
+        }catch(err){
+            console.log(err);
+            throw err;
+        }
     }
     async patch<Model>(url: string, id:string, data: Model, options?: AxiosRequestConfig){
-        let res = await axios.patch<Model>(`${this.apiEndpoint}${url}/${id}`, data, options);
-        return res.data;
+        try{
+            let res = await this.api.patch<Model>(`${url}/${id}`, data, options);
+            return res.data;
+        }catch(err){
+            console.log(err);
+            throw err;
+        }
     }
     async delete<Model>(url: string, id: string, options?: AxiosRequestConfig){
-        let res = await axios.delete<Model>(`${this.apiEndpoint}${url}/${id}`, options);
-        return res.data;
+        try{
+            let res = await this.api.delete<Model>(`${url}/${id}`, options);
+            return res.data;
+        }catch(err){
+            console.log(err);
+            throw err;
+        }
     }
 }
 

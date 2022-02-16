@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import ProductsPage from './routes/products/productsPage';
 import env from "dotenv";
+import TicketsPage from './routes/messages/TicketsPage';
 env.config();
 
 ReactDOM.render(
@@ -16,6 +17,7 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />}/>
         <Route path="/products" element={<ProductsPage />}/>
+        <Route path="/tickets" element={<TicketsPage/>}/>
       </Routes>
 
     </BrowserRouter>
