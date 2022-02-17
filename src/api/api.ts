@@ -5,7 +5,7 @@ class Api{
     api: AxiosInstance;
     
     constructor(){
-        this.api = axios.create({baseURL: process.env.REACT_APP_API_ENDPOINT})
+        this.api = axios.create({baseURL: process.env.REACT_APP_API_ENDPOINT || ""})
     }
 
     async get<Model>(url: string){
