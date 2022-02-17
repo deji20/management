@@ -5,7 +5,6 @@ class Api{
     api: AxiosInstance;
     
     constructor(){
-        this.apiEndpoint = process.env.REACT_APP_API_ENDPOINT || "";
         this.api = axios.create({baseURL: process.env.REACT_APP_API_ENDPOINT})
     }
 
