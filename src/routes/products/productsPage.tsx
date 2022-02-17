@@ -65,7 +65,7 @@ export default function ProductsPage(){
     const updateProducts = (search?: string) => {
         Api.get<ProductModel[]>("/product?"+search).then(res => {
             setProducts(res);
-        });
+        }).catch(err => console.log(err));
     }
 
     //runs when component is first initialized
