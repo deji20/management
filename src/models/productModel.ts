@@ -1,7 +1,7 @@
 import { url } from "inspector"
 
 export interface ProductModel{
-    _id: string;
+    _id?: string;
     price: number,
     name: string,
     categories: string[],

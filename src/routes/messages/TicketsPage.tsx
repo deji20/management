@@ -7,7 +7,12 @@ import TicketDetails from "./ticketDetail"
 
 export default function TicketsPage(){
     const [tickets, setTickets] = useState<Ticket[]>()
+    const [filter, setFilter] = useState<string>()
     const [dialog, openDialog] = useState<ReactElement | null>();
+
+    const filters = tickets?.flatMap((ticket) => ticket.type);
+    console.log(filters);
+
     useEffect(() => {
         api.get<Ticket[]>("/ticket").then((res) => {
             setTickets(res)
@@ -32,7 +37,7 @@ export default function TicketsPage(){
             <div className="w-2/3 rounded-xl max-h-[80vh] overflow-y-auto shadow-xl bg-gray-700">
                 <table className="w-full relative">
                     <tr className="text-lg bg-gray-900 rounded-full text-white table-fixed">
-                        <td className="p-3">Type</td>
+                        <td className="p-3 w-1/6" onClick={() => filters && setFilter(filters.pop())}>Type{filter && <span className="text-sm">: {filter}</span>}</td>
                         <td>Subject</td>
                         <td>Name</td>
                         <td>Email</td>
@@ -40,7 +45,7 @@ export default function TicketsPage(){
                         <td></td>
                     </tr>
                     {
-                    tickets?.map((ticket, i) => {
+                    tickets?.filter(ticket => !filter || ticket.type === filter).map((ticket, i) => {
                         return (
                             <tr onClick={(event) => {event.preventDefault(); ticket._id && openDetail(ticket._id)}} className={`text-white  border-b last:rounded-xl last:border-none hover:bg-gray-600 cursor-pointer`}>
                                 <td className="p-3">

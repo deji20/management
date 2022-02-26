@@ -1,4 +1,4 @@
-import { KeyboardEvent, MouseEvent, useRef, useState } from "react";
+import { KeyboardEvent, MouseEvent, useEffect, useRef, useState } from "react";
 import PredictInput from "./predict";
 
 interface InputProps{
@@ -14,15 +14,20 @@ interface InputProps{
 }
 
 export default function TokenListInput(props: InputProps){
-    const [tokens, setToken] = useState<string[]>(props.values || []);
+    const [tokens, setTokens] = useState<string[]>(props.values || []);
     const inputRef = useRef(null);
+
+
+    useEffect(() => {
+        props.values && setTokens(props.values);
+    }, [props.values]);
 
     const keyboardEvent = (e: KeyboardEvent) => {
         e.preventDefault();
         //retrieving input value and updating token array state
         let input = e.target as HTMLInputElement
         const newArr = [...tokens, input.value]
-        setToken(newArr);
+        setTokens(newArr);
 
         //calls the props callback function if it exists, passing the new input as well as the new array  
         props.onInput && props.onInput(input.value, newArr);
@@ -34,7 +39,7 @@ export default function TokenListInput(props: InputProps){
         if(item && item.innerText){
             let value = item.innerText
             const newArr = [...tokens, value]
-            setToken(newArr);
+            setTokens(newArr);
 
             //calls the props callback function if it exists, passing the new input as well as the new array  
             props.onInput && props.onInput(value, newArr);
@@ -42,7 +47,7 @@ export default function TokenListInput(props: InputProps){
     }
 
     const removeToken = (token: string) => {
-        setToken(tokens.filter(t => t !== token));
+        setTokens(tokens.filter(t => t !== token));
     }
 
     return (
@@ -60,14 +65,14 @@ export default function TokenListInput(props: InputProps){
                             // else use a default token element
                             else{
                                 return (
-                                    <div key={i} className="border flex w-min align-middle rounded-lg h-5 pl-1 m-1 bg-blue-200 cursor-auto">
-                                        <span className="relative flex flex-row ">
+                                    <div key={i} className="border flex w-min align-middle justify-between rounded-lg m-2 bg-blue-200 cursor-auto">
+                                        <span className="relative flex flex-row p-2">
                                             {props.submitable && <input readOnly hidden name={props.inputName} value={token}/>}
                                             <span className="mx-1">{token}</span>
-                                            <div className="flex rounded-r-lg hover:scale-125 duration-500 w-5 transition-all bg-red-400  cursor-pointer" onClick={ () => removeToken(token) } >
-                                                <img className="w-full" src="/api/icons/delete.svg" alt="delete"/>
-                                            </div>
                                         </span>
+                                        <div className="flex rounded-r-lg hover:scale-125 duration-500 w-5 transition-all bg-red-400  cursor-pointer" onClick={ () => removeToken(token) } >
+                                            <img className="w-full" src="/api/icons/delete.svg" alt="delete"/>
+                                        </div>
                                     </div>
                                 )}
                         })

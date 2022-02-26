@@ -13,8 +13,7 @@ class Api{
             let res = await this.api.get<Model>(`${url}`);
             return res.data;
         }catch(err){
-            console.log(err);
-            throw err;
+            throw new Error("Api Error!");
         }
     }
     async post<Model>(url: string, data: Model, options: AxiosRequestConfig = {}){

@@ -10,32 +10,29 @@ interface ImageProps{
 export default function Image(props: ImageProps){
     const [imageNr, setImage] = useState(0)
 
-    
-    const fallBack = (img: any) => {
-        //img.target.src = `${PUBLIC_API}/icons/blankImage.svg`;
-        console.log(img.target.src);
-        img.target.src = `/api/icons/blankImage.svg`;
-    }
     let image;
-    
     //changes image styling depending on if it uses the default blank image or not
     if(props.pictures && props.pictures?.length !== 0) {
-        if(typeof props.pictures[imageNr] === "string") image = <img src={`${props.pictures[imageNr]}`} alt={"straight"} className={`place-self-center max-h-full ${props.onClick && "cursor-pointer"}`}/>
+        if(typeof props.pictures[imageNr] === "string") image = <img src={`${props.pictures[imageNr]}`} alt={"straight"} onClick={props.onClick} className={`place-self-center max-h-full ${props.onClick && "cursor-pointer"}`}/>
         else{
             const img = props.pictures[imageNr] as Picture;
-            image = <img src={img.path} alt={img.alt} className={`place-self-center max-h-full ${props.onClick && "cursor-pointer"}`} onError={fallBack}/>
+            image = <img src={img.path} alt={img.alt} onClick={props.onClick} className={`place-self-center max-h-full ${props.onClick && "cursor-pointer"}`}/>
         }
     }
     else{ 
-        image = <img src={`/api/icons/blankImage.svg`} alt={"Not Found"} className={`place-self-center h-1/6 ${props.onClick && "cursor-pointer"}`} onClick={props.onClick}/>
+        image = (
+            <div className="h-full w-full flex justify-center" onClick={props.onClick}>
+                <img src={`/api/icons/blankImage.svg`} alt={"Not Found"} className={`place-self-center w-1/6 h-1/6 ${props.onClick && "cursor-pointer"}`} onClick={props.onClick}/>
+            </div>
+        )
     }
     
     
     return (
-        <div className={`relative flex ${props.className}`} onClick={props.onClick}>
+        <div className={`relative flex h-full w-full ${props.className}`}>
             <div className="absolute bottom-4 w-full flex flex-row justify-center">
                 {props.pictures && props.pictures.length > 1 && props.pictures.map((image, i) => {
-                    return (<div key={i} className="h-2 w-2 mx-2 rounded-full bg-opacity-90 bg-white hover:bg-opacity-100" 
+                    return (<div key={i} className="p-2 mx-2 rounded-full bg-opacity-60 bg-black transition-all hover:bg-white hover:scale-150 hover:bg-opacity-100" 
                         onClick={(e) => {
                             e.preventDefault()
                             setImage(i);

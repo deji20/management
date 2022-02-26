@@ -4,10 +4,15 @@ import './index.css';
 import "./styles/output.css";
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes, 
+  Route
+} from "react-router-dom";
 import ProductsPage from './routes/products/productsPage';
 import env from "dotenv";
 import TicketsPage from './routes/messages/TicketsPage';
+import ProductDetailsPage from './routes/products/productDetailsPage';
 env.config();
 
 ReactDOM.render(
@@ -16,7 +21,9 @@ ReactDOM.render(
 
       <Routes>
         <Route path="/" element={<App />}/>
-        <Route path="/products" element={<ProductsPage />}/>
+        <Route path="/orders" element={<ProductsPage />}/>
+        <Route path="/products" element={<ProductsPage/>}/>
+        <Route path="/products/:id" element={<ProductDetailsPage/>}/>
         <Route path="/tickets" element={<TicketsPage/>}/>
       </Routes>
 
