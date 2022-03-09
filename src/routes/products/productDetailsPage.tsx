@@ -1,17 +1,13 @@
 import TokenListInput from "../../components/inputComponents/tokenListInput";
 import ImageInput from "../../components/inputComponents/imageInput";
-import SectionTitle from "../../components/misc/sectionTitle";
-import { ProductModel, Version } from "../../models/productModel";
+import { ProductModel } from "../../models/productModel";
 import ProductInfo from "../../components/product/productInfo";
 import Api from "../../api/api";
 import UseSwr from "swr";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import api from "../../api/api";
 import Image from "../../components/Image";
 import NavBar from "../../components/navigation/navBar";
-
-interface ProductProps{}
 
 export default function ProductDetailsPage(props: any){
     //get id from url parameter

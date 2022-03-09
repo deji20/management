@@ -1,17 +1,11 @@
 import Api from "../../api/api";
-import { Component, ReactElement, useEffect, useState} from "react";
+import { ReactElement, useEffect, useState} from "react";
 import ProductTable from "../../components/product/productTable/productTable";
 import { ProductModel } from "../../models/productModel";
-import ProductDetailsPage from "./productDetailsPage";
 import CategoryListPage from "./categoryListPage";
 import DialogComponent from "../../components/dialogs/baseDialog";
 import ActionButton from "../../components/buttons/actionButton";
 import NavBar from "../../components/navigation/navBar";
-
-interface PageState{
-    products: ProductModel[];
-    dialog: any;
-}
 
 export default function ProductsPage(){
     const [dialog, openDialog] = useState<ReactElement | null>(null);

@@ -1,11 +1,7 @@
 import { ReactElement, useState } from "react";
-import Api from "../../../api/api";
 import { ProductModel } from "../../../models/productModel";
-import ProductDetailsPage from "../../../routes/products/productDetailsPage";
-import DialogComponent from "../../dialogs/baseDialog";
-import ProductInfo from "../productInfo";
 import Image from "../../Image";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export default function ProductRow(props: {product: ProductModel}){

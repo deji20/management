@@ -1,17 +1,9 @@
 import Api from "../../api/api";
-import { useEffect, useState } from "react";
-import ActionButton from "../../components/buttons/actionButton";
 import useSWR from "swr";
 
-interface CategoryProps{
-}
-
-export default function CategoryListPage(props: CategoryProps){
+export default function CategoryListPage(){
     const {data: categories, error } = useSWR<string[]>("/product/categories", (key) => Api.get<string[]>(key));
     const {data: mainCategories, error: mainCategoriesError } = useSWR<string[]>("/category", (key) => Api.get<string[]>(key));
-
-    console.log(mainCategories);
-    console.log(categories);
     return (
         <table className="min-w-full min-h-max bg-gray-600 p-2 rounded table-auto">
             <tbody>
