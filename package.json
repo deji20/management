@@ -35,7 +35,7 @@
   "scripts": {
     "start": "PORT=80 react-scripts start",
     "dev": "npm start",
-    "build": "react-scripts build",
+    "build": "CI=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "watch-css": "nodemon -w ./src -e tsx -x npm run css",
