@@ -15,18 +15,12 @@ jobs:
       - name: Updating System
         run: sudo apt-get install -f
       - uses: actions/checkout@v2
-      - name: Creating image
-        run: docker build -t ${{ env.image }} .
+      - name: Creating build
+        run: npm i && npm run build
       - name: Sending image to server
-        uses: ./.github/actions/send-image
+        uses: ./.github/actions/send-build
         with:
-          image: ${{ env.image }}
-          destination: ${{ secrets.STAGING_DESTINATION }}
-          key: ${{ secrets.STAGING_KEY }}
-      - name: Starting Image
-        uses: ./.github/actions/start-image
-        with:
-          service: management
-          image: ${{ env.image }}
+          destinationFolder: management
+          buildFolder: ./build
           destination: ${{ secrets.STAGING_DESTINATION }}
           key: ${{ secrets.STAGING_KEY }}

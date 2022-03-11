@@ -7,9 +7,6 @@ export default function OrdersPage(){
             <NavBar back="/">
                 <input className="flex flex-grow font-bold h-full text-white bg-blue-900 bg-opacity-10 w-full px-3 focus:bg-opacity-100" placeholder="Search" type="text"/>
             </NavBar>
-            <div className="px-10 flex justify-center text-gray-500">
-                <ActionButton title="Add Category" className=" h-32 w-1/3" iconSrc="/api/icons/plus.svg" onClick={() => console.log("hello world")}/>
-            </div>
         </div>
     );
 }

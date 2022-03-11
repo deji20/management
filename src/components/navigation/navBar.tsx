@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import ProductsPage from "../../routes/products/productsPage";
 import Image from "../Image";
 
 interface navProps{
@@ -9,7 +7,6 @@ interface navProps{
     children: any;
 }
 export default function NavBar(props: navProps){
-    const nav = useNavigate()
     return (
         <div className={`sticky bg-black bg-opacity-70 h-10 flex flex-row justify-between w-screen text-white ${props.className}`}>
             {props.back && 

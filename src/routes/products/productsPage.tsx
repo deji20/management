@@ -50,9 +50,9 @@ export default function ProductsPage(){
                 <input className="flex flex-grow font-bold h-full text-white bg-blue-900 bg-opacity-10 w-full px-3 focus:bg-opacity-100" placeholder="Search" type="text" onChange={(event) => updateProducts("search=name="+event.target.value)}/>
             </NavBar>
             {dialog}
-            <div className="px-10 flex justify-center text-gray-500">
-                <ActionButton link="create" title="Add Product" className=" h-32 w-1/3" iconSrc="/api/icons/plus.svg"/>
-                <ActionButton title="Add Category" className=" h-32 w-1/3" iconSrc="/api/icons/plus.svg" onClick={createCategories}/>
+            <div className="px-10 flex justify-center text-gray-500 m-2">
+                <ActionButton link="create" title="Add Product" className="w-1/6" iconSrc="/api/icons/plus.svg"/>
+                <ActionButton title="Add Category" className="w-1/6 mx-2" iconSrc="/api/icons/plus.svg" onClick={createCategories}/>
             </div>
             <ProductTable products={products}/>
         </div>

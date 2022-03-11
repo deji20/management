@@ -9,10 +9,10 @@ interface ButtonProps{
 }
 
 export default function ActionButton(props: ButtonProps){
-    const styling = `m-2 flex flex-col rounded-lg justify-center align-middle bg-blue-700  shadow-2xl text-white text-center ${props.className} `
+    const styling = `flex flex-col rounded-lg justify-center align-middle bg-blue-700 shadow-2xl text-white text-center ${props.className} `
     let button = (
         <div onClick={props.onClick} className={`${!props.link && styling}`}>
-            <div className="w-full mt-2 flex justify-center">
+            <div className="w-full flex justify-center">
                 <img className="h-auto w-20 text-white"  src={props.iconSrc} alt={props.title}></img>
             </div>
             <p className="m-auto">{props.title}</p>
