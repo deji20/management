@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function ProductRow(props: {product: ProductModel}){
-    const [dialog, ShowDialog] = useState<ReactElement | null>();
     const [product, updateProduct] = useState<ProductModel>(props.product);
     const nav = useNavigate();
 
