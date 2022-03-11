@@ -5,7 +5,7 @@ KEY=$4
 
 
 echo "$KEY" > ./key.pem && chmod 400 ./key.pem
-sftp -o StrictHostKeyChecking=no -i key.pem $DESTINATION:. <<< $"put ./${BUILD} ${OUTPUT}"
+sftp -o StrictHostKeyChecking=no -i key.pem $DESTINATION:. <<< $"put -r ./${BUILD} ${OUTPUT}"
 
 if [[ -f  ./key.pem ]]; then
     rm key.pem
