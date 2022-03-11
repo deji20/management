@@ -36,7 +36,7 @@
     "start": "PORT=80 react-scripts start",
     "dev": "npm start",
     "slow": "nodemon -w src -e 'ts css tsx' -i -x npm run css && npm start",
-    "build": "export NODE_OPTIONS=--openssl-legacy-provider; react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "watch-css": "nodemon -w ./src -e tsx -x npm run css",
