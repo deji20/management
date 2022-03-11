@@ -1,0 +1,21 @@
+name: "Send Image"
+inputs:
+  destinationFolder:
+    description: name of destination folder for the build to be sent to
+    required: true
+  buildFolder:
+    description: name of the build folder to be sent
+    required: true
+  destination:
+    description: the server to send the file to, (example@ip-address)
+    required: true
+  key:
+    description: the servers ssh key
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: running send script
+      run: ${{ github.action_path }}/send.sh ${{ inputs.buildFolder }} ${{ inputs.destinationFolder }} ${{ inputs.destination }} "${{ inputs.key }}"
+      shell: bash
