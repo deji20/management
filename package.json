@@ -42,6 +42,9 @@
     "css": " postcss src/styles/tailwind.css -o src/styles/output.css"
   },
   "eslintConfig": {
+    "rules": {
+      "no-unused-vars": false
+    },
     "extends": [
       "react-app",
       "react-app/jest"
