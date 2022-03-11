@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Creating build
         run: npm i && npm run build
-      - name: Sending image to server
+      - name: Sending build to server
         uses: ./.github/actions/send-build
         with:
           destinationFolder: management
