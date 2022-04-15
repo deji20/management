@@ -1,6 +1,6 @@
 import { Dispatch, MouseEvent, useEffect, useRef, useState } from "react";
-import {FormDataEvent} from "../inputComponents/Form";
-import Form from "../inputComponents/Form";
+import {FormDataEvent} from "../input/Form";
+import Form from "../input/Form";
 import Image from "../Image";
 
 interface DialogProps{

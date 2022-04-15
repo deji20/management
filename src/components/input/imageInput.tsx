@@ -29,7 +29,7 @@ export default function ImageInput(props: InputProps){
                     let res = reader.result;
                     let picture: Picture = {
                         path: res,
-                        ratio: { x:100, y:100 },
+                        ratio: { x:1000, y:1000 },
                         alt: files[i].name,
                         mime: files[i].type,
                     }

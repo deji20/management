@@ -26,13 +26,15 @@ export default function TokenListInput(props: InputProps){
         e.preventDefault();
         //retrieving input value and updating token array state
         let input = e.target as HTMLInputElement
-        const newArr = [...tokens, input.value]
-        setTokens(newArr);
-
-        //calls the props callback function if it exists, passing the new input as well as the new array  
-        props.onInput && props.onInput(input.value, newArr);
-        //reset input
-        input.value = "";
+        if(input.value){
+            const newArr = [...tokens, input.value]
+            setTokens(newArr);
+            
+            //calls the props callback function if it exists, passing the new input as well as the new array  
+            props.onInput && props.onInput(input.value, newArr);
+            //reset input
+            input.value = "";
+        }
     }
     const clickEvent = (e: MouseEvent<HTMLLIElement>) => {
         const item = e.target as HTMLLIElement;
@@ -68,7 +70,7 @@ export default function TokenListInput(props: InputProps){
                                     <div key={i} className="border flex w-min align-middle justify-between rounded-lg m-2 bg-blue-200 cursor-auto">
                                         <span className="relative flex flex-row p-2">
                                             {props.submitable && <input readOnly hidden name={props.inputName} value={token}/>}
-                                            <span className="mx-1">{token}</span>
+                                            <span className="mx-1 tracking-wide">{token}</span>
                                         </span>
                                         <div className="flex rounded-r-lg hover:scale-125 duration-500 w-5 transition-all bg-red-400  cursor-pointer" onClick={ () => removeToken(token) } >
                                             <img className="w-full" src="/api/icons/delete.svg" alt="delete"/>

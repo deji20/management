@@ -1,5 +1,5 @@
-import TokenListInput from "../../components/inputComponents/tokenListInput";
-import ImageInput from "../../components/inputComponents/imageInput";
+import TokenListInput from "../../components/input/tokenListInput";
+import ImageInput from "../../components/input/imageInput";
 import { ProductModel } from "../../models/productModel";
 import ProductInfo from "../../components/product/productInfo";
 import Api from "../../api/api";
@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Image from "../../components/Image";
 import NavBar from "../../components/navigation/navBar";
+import NumberInput from "../../components/input/numberInput";
 
 export default function ProductDetailsPage(props: any){
     //get id from url parameter
@@ -23,7 +24,7 @@ export default function ProductDetailsPage(props: any){
             revalidateIfStale: false,
         })
 
-    //try to pull id from database
+    //try to pull product from database
     const {data: prod, error: productError } =  UseSwr<ProductModel>(
         `/product/${id}`,
         key => Api.get<ProductModel>(key),
@@ -32,6 +33,7 @@ export default function ProductDetailsPage(props: any){
             revalidateIfStale: false,
         }
     );
+
     const [product, setProduct] = useState<ProductModel>(prod || {
         name: "",
         price: 0,
@@ -62,7 +64,7 @@ export default function ProductDetailsPage(props: any){
     }
 
     return (
-        <div className="bg-gray-800 h-screen w-screen flex align-middle flex-col">
+        <div className="bg-gray-800 min-h-screen w-screen flex align-middle flex-col">
             <NavBar back="/products">
                 <div className="flex flex-row justify-end p-1">
                     <button className="bg-red-800 w-10 bg-opacity-50 hover:bg-opacity-100 rounded transition-all duration-300" onClick={deleteProduct}>
@@ -73,10 +75,10 @@ export default function ProductDetailsPage(props: any){
                     </button>
                 </div>
             </NavBar>
-            <div className="flex p-20 w-2/3 place-self-center">
-                <div className="w-full h-full relative grid grid-cols-8 bg-gray-100 rounded shadow-2xl">
+            <div className="flex md:p-20 w-2/3 place-self-center">
+                <div className="w-full h-full relative grid grid-cols-3 md:grid-cols-8 bg-gray-100 rounded shadow-2xl">
                     <div className="flex flex-1 flex-col col-span-3 h-full">
-                        <div className="h-64">
+                        <div className="flex justify-center h-64">
                             <ImageInput 
                                 onInput={
                                 (file, allImages) => {
@@ -92,6 +94,7 @@ export default function ProductDetailsPage(props: any){
                             <label className="text-slate-700 font-semibold text-lg">Kategorier </label>
                             <TokenListInput
                                 onInput={(token, tokens) => {
+                                    console.log(tokens);
                                     if(product) product.categories = tokens;
                                 }}
                                 values={product?.categories} 
@@ -103,24 +106,14 @@ export default function ProductDetailsPage(props: any){
 
                         <div className="flex flex-grow">
                             <div className="flex flex-row w-full place-items-end place-self-end self-end bg-gray-400 rounded-b text-white ">
-                                <input 
-                                    onChange={(price) => {
-                                        //regex preventing everything but numbers from being input 
-                                        const value = price.target.value.replace(/[.^\d]/, "")
-                                        product.price = Number.parseInt(value);
-                                        setProduct(product);
-                                    }} 
-                                    type="tel" 
-                                    className="font-light bg-white bg-opacity-10 w-full p-2 tracking-wide text-right placeholder:text-white" 
-                                    placeholder="price" 
-                                    defaultValue={product.price} />
+                                <NumberInput className="font-light bg-white bg-opacity-10 w-full p-2 tracking-wide text-right placeholder:text-white" defaultValue={product.price} onChange={(e) => {product.price = e; setProduct(product)}}/>
                                 <span className="p-2">Kr</span>
                             </div>
                         </div>
                     
                     </div>
 
-                    <div className="justify-between flex flex-col rounded col-span-5 h-full w-full px-2">
+                    <div className="place-self-start justify-between flex flex-col rounded col-span-5 h-full w-full px-2">
                         <div className="flex flex-col m-2">
                             <label className="text-slate-700 font-semibold text-lg">Navn</label>
                             <input 
