@@ -13,7 +13,7 @@ export default function ProductsPage(){
 
     //get products to display
     const updateProducts = (search?: string) => {
-        Api.get<ProductModel[]>("/product?"+search).then(res => {
+        Api.get<ProductModel[]>(`/product?${search}`).then(res => {
             setProducts(res);
         }).catch(err => console.log(err));
     }

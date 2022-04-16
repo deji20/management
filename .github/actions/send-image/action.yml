@@ -1,0 +1,18 @@
+name: "Send Image"
+inputs:
+  image:
+    description: image name and tag in ":" seperated form (name:tag)
+    required: true
+  destination:
+    description: the server to send the file to, (example@ip-address)
+    required: true
+  key:
+    description: the servers ssh key
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: running send script
+      run: ${{ github.action_path }}/send.sh ${{ inputs.image }} ${{ inputs.destination }} "${{ inputs.key }}"
+      shell: bash
