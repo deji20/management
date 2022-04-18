@@ -6,15 +6,14 @@ class Api{
     
     constructor(){
         this.api = axios.create({baseURL: process.env.REACT_APP_API_ENDPOINT || "/api"})
+
     }
 
     async get<Model>(url: string){
         try{
-            console.log(process.env.REACT_APP_API_ENDPOINT)
             let res = await this.api.get<Model>(`${url}`);
             return res.data;
         }catch(err){
-            console.log(err);
             throw new Error("Api Error!");
         }
     }
