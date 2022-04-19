@@ -52,8 +52,8 @@ export default function ProductDetailsPage(props: any){
 
     //displays the dialog window for creating new products
     const submit = () => {
-        if(product._id) Api.patch("/product", product._id, product);
-        else Api.post("/product", product)
+        if(product._id) Api.patch<ProductModel>("/product", product._id, product).then(res => res && setProduct(res));
+        else Api.post<ProductModel>("/product", product).then(res => res && setProduct(res));
     }
     const deleteProduct = async () => {
         if(product._id){
@@ -82,6 +82,7 @@ export default function ProductDetailsPage(props: any){
                             <ImageInput 
                                 onInput={
                                 (file, allImages) => {
+                                    console.log(allImages);
                                     if(product) product.version[0].pictures = allImages;
                                 }} 
                                 multiple 

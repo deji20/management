@@ -12,6 +12,7 @@ interface InputProps{
 
 export default function ImageInput(props: InputProps){
     const [images, setImages] = useState<Picture[]>(props.images || []);
+    const [imageNr, setImageNr] = useState<number>(0);
     const inputRef = useRef(null);
 
     //refreshes image state if props are updated
@@ -64,9 +65,22 @@ export default function ImageInput(props: InputProps){
 
     return (
         <div className="relative flex justify-center align-middle bg-gray-200 rounded-sm cursor-pointer h-full">
+            <div
+                onClick={() => {
+                    const filterImages = images.filter((img, i) => i != imageNr)
+                    if(filterImages.length <= imageNr) setImageNr(filterImages.length - 1);
+                    if(inputRef?.current){
+                        const input = (inputRef.current as HTMLInputElement)
+                        setImages(filterImages);
+                        input.files && props.onInput && props.onInput(input?.files, filterImages);
+                    };
+                }} 
+                className="absolute right-2 top-2 z-50 w-5 bg-red-900 bg-opacity-40 rounded-full hover:bg-opacity-80">
+                <Image pictures={["/api/icons/delete.svg"]}/>
+            </div>
             <input type="file" multiple={props.multiple} ref={inputRef} className="absolute w-full h-full hidden" onChange={fileUploadedEvent}/>
             { images.map( (imageInput, i) => <input name={props.inputName} key={i} type="hidden" value={JSON.stringify(imageInput)} /> ) }
-            <Image className="place-self-center" pictures={images} onClick={uploadFileEvent}/>
+            <Image className="place-self-center" pictures={images} onChange={(pic, i) => setImageNr(i)} onClick={uploadFileEvent}/>
         </div>
     )
 }
