@@ -64,7 +64,7 @@ export default function ImageInput(props: InputProps){
     }
 
     return (
-        <div className="relative flex justify-center align-middle bg-gray-200 rounded-sm cursor-pointer h-full">
+        <div className="relative flex justify-center align-middle bg-gray-200 rounded-sm cursor-pointer h-full w-full">
             <div
                 onClick={() => {
                     const filterImages = images.filter((img, i) => i != imageNr)
