@@ -78,7 +78,7 @@ export default function ProductDetailsPage(props: any){
             <div className="flex md:p-20 w-2/3 place-self-center">
                 <div className="w-full h-full relative grid grid-cols-3 md:grid-cols-8 bg-gray-100 rounded shadow-2xl">
                     <div className="flex flex-1 flex-col col-span-3 h-full">
-                        <div className="flex justify-center h-64">
+                        <div className="flex justify-center h-64 w-full">
                             <ImageInput 
                                 onInput={
                                 (file, allImages) => {
