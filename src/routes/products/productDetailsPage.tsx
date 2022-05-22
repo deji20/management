@@ -1,7 +1,7 @@
 import TokenListInput from "../../components/input/tokenListInput";
 import ImageInput from "../../components/input/imageInput";
 import { ProductModel } from "../../models/productModel";
-import ProductInfo from "../../components/product/productInfo";
+import ProductAttributes from "../../components/product/productAttributes";
 import Api from "../../api/api";
 import UseSwr from "swr";
 import { useEffect, useState } from "react";
@@ -9,6 +9,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Image from "../../components/Image";
 import NavBar from "../../components/navigation/navBar";
 import NumberInput from "../../components/input/numberInput";
+import { versions } from "process";
 
 export default function ProductDetailsPage(props: any){
     //get id from url parameter
@@ -41,9 +42,11 @@ export default function ProductDetailsPage(props: any){
         version: [{
             amount: 0, 
             description:"",
+            attributes: [],
             pictures:[]
         }]
     });
+    const [version, setVersion] = useState<number>(0);
 
     // sets the product state if database query is successful 
     useEffect(() => {
@@ -83,11 +86,11 @@ export default function ProductDetailsPage(props: any){
                                 onInput={
                                 (file, allImages) => {
                                     console.log(allImages);
-                                    if(product) product.version[0].pictures = allImages;
+                                    if(product) product.version[version].pictures = allImages;
                                 }} 
                                 multiple 
                                 inputName="[pictures]"  
-                                images={ product.version[0].pictures }
+                                images={ product.version[version].pictures }
                             />
                         </div>
 
@@ -107,11 +110,13 @@ export default function ProductDetailsPage(props: any){
 
                         <div className="flex flex-grow">
                             <div className="flex flex-row w-full place-items-end place-self-end self-end bg-gray-400 rounded-b text-white ">
-                                <NumberInput className="font-light bg-white bg-opacity-10 w-full p-2 tracking-wide text-right placeholder:text-white" defaultValue={product.price} onChange={(e) => {product.price = e; setProduct(product)}}/>
+                                <NumberInput 
+                                    className="font-light bg-white bg-opacity-10 w-full p-2 tracking-wide text-right placeholder:text-white" 
+                                    value={product.price} 
+                                    onChange={(e) => {product.price = e; setProduct(product)}}/>
                                 <span className="p-2">Kr</span>
                             </div>
                         </div>
-                    
                     </div>
 
                     <div className="place-self-start justify-between flex flex-col rounded col-span-5 h-full w-full px-2">
@@ -128,16 +133,34 @@ export default function ProductDetailsPage(props: any){
                         </div>
                         <div className="flex flex-col m-2">
                             <label className="text-slate-700 font-semibold text-lg">Info </label>
-                            <ProductInfo className="p-1 rounded-lg shadow-lg bg-black bg-opacity-10" product={product}/>
+                            <ProductAttributes 
+                                className="w-full p-1 rounded-lg shadow-lg bg-black bg-opacity-10" 
+                                onChange={(attributes) => product.version[version].attributes = attributes}
+                                attributes={product.version[version].attributes}/>
                         </div>
                         <div className="flex flex-col w-full h-56 place-self-end p-2">
                             <label className="text-slate-700 font-semibold text-lg">Beskrivelse </label>
                             <textarea 
-                                onChange={(description) => product.version[0].description = description.target.value}
+                                onChange={(description) => product.version[version].description = description.target.value}
                                 name="version.description" 
                                 className="bg-gray-200 shadow-xl overflow-auto rounded p-2 flex-1" 
-                                defaultValue={product.version[0].description}/>
+                                defaultValue={product.version[version].description}/>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div className="flex flex-grow justify-evenly">
+                <div className="flex flex-col w-28">
+                    <h1 className="text-lg text-white bg-white bg-opacity-10 text-center rounded-t">Amount</h1>
+                    <div className="flex flex-row w-full place-items-end place-self-end self-end bg-black bg-opacity-30 rounded-b text-white ">
+                        <NumberInput 
+                            className="font-light bg-white bg-opacity-10 w-full p-2 tracking-wide text-right placeholder:text-white" 
+                            value={product.version[version].amount} 
+                            onChange={(e) => {
+                                console.log(e);
+                                product.version[version].amount = e; 
+                                setProduct(product)
+                            }}/>
                     </div>
                 </div>
             </div>

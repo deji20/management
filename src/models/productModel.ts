@@ -10,8 +10,14 @@ export interface ProductModel{
 
 export interface Version{
     pictures: Picture[],
+    attributes: Attribute[],
     description: string,
     amount: number,
+}
+
+export interface Attribute{
+    name: string,
+    value: string,
 }
 
 export interface Picture{
