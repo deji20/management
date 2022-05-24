@@ -469,8 +469,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
 }
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
 .mb-2 {
   margin-bottom: 0.5rem;
+}
+.mr-0 {
+  margin-right: 0px;
 }
 .flex {
   display: flex;
@@ -628,6 +634,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .cursor-auto {
   cursor: auto;
 }
+.grid-cols-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
@@ -688,6 +697,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .overflow-y-scroll {
   overflow-y: scroll;
 }
+.whitespace-nowrap {
+  white-space: nowrap;
+}
 .rounded-xl {
   border-radius: 0.75rem;
 }
@@ -718,17 +730,20 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-bottom-right-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
 }
-.rounded-t {
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
-}
 .rounded-r-lg {
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
 }
+.rounded-t {
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
 .rounded-l-lg {
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
+}
+.rounded-tr-none {
+  border-top-right-radius: 0px;
 }
 .border {
   border-width: 1px;
@@ -802,13 +817,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
-.bg-blue-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
-}
 .bg-blue-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+}
+.bg-blue-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
 }
 .bg-red-500 {
   --tw-bg-opacity: 1;
@@ -839,6 +854,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
 }
+.bg-opacity-40 {
+  --tw-bg-opacity: 0.4;
+}
+.bg-opacity-70 {
+  --tw-bg-opacity: 0.7;
+}
 .bg-opacity-30 {
   --tw-bg-opacity: 0.3;
 }
@@ -847,12 +868,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;
-}
-.bg-opacity-40 {
-  --tw-bg-opacity: 0.4;
-}
-.bg-opacity-70 {
-  --tw-bg-opacity: 0.7;
 }
 .bg-opacity-20 {
   --tw-bg-opacity: 0.2;
@@ -1100,6 +1115,10 @@ input{
 
 .hover\:bg-opacity-100:hover {
   --tw-bg-opacity: 1;
+}
+
+.hover\:bg-opacity-60:hover {
+  --tw-bg-opacity: 0.6;
 }
 
 .hover\:bg-opacity-80:hover {

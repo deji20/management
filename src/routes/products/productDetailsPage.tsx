@@ -1,6 +1,6 @@
 import TokenListInput from "../../components/input/tokenListInput";
 import ImageInput from "../../components/input/imageInput";
-import { ProductModel } from "../../models/productModel";
+import { ProductModel, Version } from "../../models/productModel";
 import ProductAttributes from "../../components/product/productAttributes";
 import Api from "../../api/api";
 import UseSwr from "swr";
@@ -35,7 +35,7 @@ export default function ProductDetailsPage(props: any){
         }
     );
 
-    const [product, setProduct] = useState<ProductModel>(prod || {
+    const [product, setProduct] = useState<ProductModel>({
         name: "",
         price: 0,
         categories: [],
@@ -46,51 +46,52 @@ export default function ProductDetailsPage(props: any){
             pictures:[]
         }]
     });
-    const [version, setVersion] = useState<number>(0);
-
+    const [versionNr, setVersionNr] = useState<number>(0);
+   
     // sets the product state if database query is successful 
     useEffect(() => {
         !productError && prod && setProduct(prod);
     }, [prod]);
 
-    //displays the dialog window for creating new products
-    const submit = () => {
-        if(product._id) Api.patch<ProductModel>("/product", product._id, product).then(res => res && setProduct(res));
-        else Api.post<ProductModel>("/product", product).then(res => res && setProduct(res));
+    function clone<T>(obj: Object): T{
+        return JSON.parse(JSON.stringify(obj)) as T;
     }
-    const deleteProduct = async () => {
-        if(product._id){
-            let result = await Api.delete("/product", product._id)
-            nav("/products")
-        } 
-        
-    }
-
     return (
         <div className="bg-gray-800 min-h-screen w-screen flex align-middle flex-col">
             <NavBar back="/products">
                 <div className="flex flex-row justify-end p-1">
-                    <button className="bg-red-800 w-10 bg-opacity-50 hover:bg-opacity-100 rounded transition-all duration-300" onClick={deleteProduct}>
+                    <button 
+                        className="bg-red-800 w-10 bg-opacity-50 hover:bg-opacity-100 rounded transition-all duration-300" 
+                        onClick={async () => {
+                            if(product._id){
+                                let result = await Api.delete("/product", product._id)
+                                nav("/products")
+                            }}
+                        }>
                         <Image className="flex p-1" pictures={["/api/icons/trash.svg"]}/>
                     </button>
-                    <button className="bg-blue-800 w-10 bg-opacity-50 hover:bg-opacity-100 rounded mx-5 transition-all duration-300" onClick={submit}>
+                    <button 
+                        className="bg-blue-800 w-10 bg-opacity-50 hover:bg-opacity-100 rounded mx-5 transition-all duration-300" 
+                        onClick={() => {
+                                if(product._id) Api.patch<ProductModel>("/product", product._id, product).then(res => res && setProduct(res));
+                                else Api.post<ProductModel>("/product", product).then(res => res && setProduct(res));
+                            }}>
                         <Image className="flex p-1" pictures={["/api/icons/save.svg"]}/>
                     </button>
                 </div>
             </NavBar>
             <div className="flex md:p-20 w-2/3 place-self-center">
-                <div className="w-full h-full relative grid grid-cols-3 md:grid-cols-8 bg-gray-100 rounded shadow-2xl">
+                <div className="w-full h-full relative grid grid-cols-4 md:grid-cols-8 bg-gray-100 rounded rounded-tr-none shadow-2xl">
                     <div className="flex flex-1 flex-col col-span-3 h-full">
                         <div className="flex justify-center h-64 w-full">
                             <ImageInput 
                                 onInput={
                                 (file, allImages) => {
-                                    console.log(allImages);
-                                    if(product) product.version[version].pictures = allImages;
+                                    if(product) product.version[versionNr].pictures = allImages;
                                 }} 
                                 multiple 
                                 inputName="[pictures]"  
-                                images={ product.version[version].pictures }
+                                images={ product.version[versionNr].pictures }
                             />
                         </div>
 
@@ -98,7 +99,6 @@ export default function ProductDetailsPage(props: any){
                             <label className="text-slate-700 font-semibold text-lg">Kategorier </label>
                             <TokenListInput
                                 onInput={(token, tokens) => {
-                                    console.log(tokens);
                                     if(product) product.categories = tokens;
                                 }}
                                 values={product?.categories} 
@@ -135,32 +135,49 @@ export default function ProductDetailsPage(props: any){
                             <label className="text-slate-700 font-semibold text-lg">Info </label>
                             <ProductAttributes 
                                 className="w-full p-1 rounded-lg shadow-lg bg-black bg-opacity-10" 
-                                onChange={(attributes) => product.version[version].attributes = attributes}
-                                attributes={product.version[version].attributes}/>
+                                onChange={(attributes) => product.version[versionNr].attributes = attributes}
+                                attributes={product.version[versionNr].attributes}/>
                         </div>
                         <div className="flex flex-col w-full h-56 place-self-end p-2">
                             <label className="text-slate-700 font-semibold text-lg">Beskrivelse </label>
                             <textarea 
-                                onChange={(description) => product.version[version].description = description.target.value}
+                                onChange={(description) => product.version[versionNr].description = description.target.value}
                                 name="version.description" 
                                 className="bg-gray-200 shadow-xl overflow-auto rounded p-2 flex-1" 
-                                defaultValue={product.version[version].description}/>
+                                defaultValue={product.version[versionNr].description}/>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="flex flex-grow justify-evenly">
-                <div className="flex flex-col w-28">
-                    <h1 className="text-lg text-white bg-white bg-opacity-10 text-center rounded-t">Amount</h1>
-                    <div className="flex flex-row w-full place-items-end place-self-end self-end bg-black bg-opacity-30 rounded-b text-white ">
-                        <NumberInput 
-                            className="font-light bg-white bg-opacity-10 w-full p-2 tracking-wide text-right placeholder:text-white" 
-                            value={product.version[version].amount} 
-                            onChange={(e) => {
-                                console.log(e);
-                                product.version[version].amount = e; 
-                                setProduct(product)
-                            }}/>
+                <div className="flex flex-col justify-end">
+                    <ul className="bg-opacity-50">
+                        {product.version.map((version, i) => {
+                            return (
+                                <li key={i} onClick={() => setVersionNr(i)} className={"bg-blue-500 rounded-r-lg mb-1 cursor-pointer hover:bg-opacity-60 text-white bg-opacity-40 w-full p-2 px-4 shadow-xl " + (i == versionNr && "bg-opacity-70")}>
+                                    <p className="px-2 cursor-pointer whitespace-nowrap">Version {i + 1}</p>
+                                </li>
+                            )
+                        })}
+                        <li>
+                            <Image onClick={() => {
+                                let newProd = clone<ProductModel>(product)
+                                newProd.version = [...product.version, clone<Version>(product.version[versionNr])];
+                                setProduct(newProd);
+                            }} className="w-10 m-auto" pictures={["/api/icons/plus.svg"]}/>
+                        </li>
+                    </ul>
+                    <div className="flex flex-grow justify-evenly">
+                        <div className="flex flex-col w-28">
+                            <h1 className="text-lg text-white bg-white bg-opacity-10 text-center rounded-t">Amount</h1>
+                            <div className="flex flex-row w-full place-items-end place-self-end self-end bg-black bg-opacity-30 rounded-b text-white ">
+                                <NumberInput 
+                                    className="font-light bg-white bg-opacity-10 w-full p-2 tracking-wide text-right placeholder:text-white" 
+                                    value={product.version[versionNr].amount} 
+                                    onChange={(e) => {
+                                        product.version[versionNr].amount = e; 
+                                        setProduct(product)
+                                    }}/>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

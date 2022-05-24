@@ -22,7 +22,8 @@ export default function ProductAttributes(props: AttributeProps){
 
     return (
         <div className={props.className}>
-            <table className="table-fixed text-sm text-left">
+            <table className="table-fixed text-sm text-left w-full">
+                <tbody>
                 {attributes.map((attribute, i) => {
                     return (
                         <tr key={i} className="flex">
@@ -38,7 +39,7 @@ export default function ProductAttributes(props: AttributeProps){
                             </td>
                             <td className="text-center">:</td>
                             <td className="flex flex-grow">
-                                <input className="p-1 w-full px-2 rounded-r-lg" 
+                                <input className="p-1 w-full px-2 rounded-r-lg bg-transparent" 
                                 type="text" 
                                 placeholder={attribute.value}
                                 onChange={(event) => {
@@ -47,6 +48,7 @@ export default function ProductAttributes(props: AttributeProps){
                                 }}
                                 />    
                             </td>
+                            <td><Image onClick={() => setAttributes(attributes.filter((a) => a != attribute))} className="bg-red-900 bg-opacity-50 hover:bg-opacity-100 cursor rounded-full m-auto mr-0 w-7" pictures={["/api/icons/delete.svg"]}/></td>
                         </tr>
                     )
                 })}
@@ -61,57 +63,8 @@ export default function ProductAttributes(props: AttributeProps){
                         </button>
                     </td>
                 </tr>
-            </table>
-        </div>
-    )
-    return (
-        <div className={props.className}>
-            <table className={"table-fixed text-sm text-left w-full"}>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Value</th>
-                        <th>Options</th> 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Size:</td>
-                        <td>
-                            <select className="w-full">
-                                <option>XXS</option>
-                                <option>XS</option>
-                                <option>S</option>
-                                <option>M</option>
-                                <option>L</option>
-                                <option>XL</option>
-                                <option>XXL</option>
-                            </select>
-                        </td>
-                        <td>
-                            <input className="w-full" type="checkbox"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Color:</td>
-                        <td>
-                            <input className="w-full" type="text"></input>
-                        </td>
-                        <td>
-                            <input className="w-full" type="checkbox"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Material:</td>
-                        <td>
-                            <input className="w-full" type="text"/>
-                        </td>
-                        <td>
-                            <input className="w-full" type="checkbox"/>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </div>
-    )
+    );
 }
