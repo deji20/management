@@ -18,25 +18,25 @@ export default function ProductsPage(){
         }).catch(err => console.log(err));
     }
 
-       //displays the dialog window for creating categories and setting base categories 
-       const createCategories = () => { 
-        openDialog(
-            <DialogComponent
-                onClose={() => {
-                    openDialog(null);
-                }}
+    //displays the dialog window for creating categories and setting base categories 
+    const createCategories = () => { 
+    openDialog(
+        <DialogComponent
+            onClose={() => {
+                openDialog(null);
+            }}
 
-                onSubmit={(e, active) => {
-                    let data = e.data as {category: string[]}
-                    setTimeout(() => {
-                        Api.post("/category", data.category).then(() => {
-                            active(false);
-                        })
-                    }, 1000)
-                }}>
-                <CategoryListPage />
-            </DialogComponent>
-        )
+            onSubmit={(e, active) => {
+                let data = e.data as {category: string[]}
+                setTimeout(() => {
+                    Api.post("/category", data.category).then(() => {
+                        active(false);
+                    })
+                }, 1000)
+            }}>
+            <CategoryListPage />
+        </DialogComponent>
+    )
     }
     
     //runs when component is first initialized
