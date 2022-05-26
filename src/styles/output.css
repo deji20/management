@@ -383,7 +383,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
 
-.shadow-xl, .shadow-2xl, .shadow-lg {
+.shadow-xl, .shadow-2xl, .shadow-lg, .hover\:shadow-inner {
   --tw-ring-offset-shadow: 0 0 #0000;
   --tw-ring-shadow: 0 0 #0000;
   --tw-shadow: 0 0 #0000;
@@ -493,11 +493,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-full {
   height: 100%;
 }
-.h-48 {
-  height: 12rem;
+.h-12 {
+  height: 3rem;
 }
 .h-min {
   height: min-content;
+}
+.h-10 {
+  height: 2.5rem;
 }
 .h-7 {
   height: 1.75rem;
@@ -523,8 +526,8 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-8 {
   height: 2rem;
 }
-.h-10 {
-  height: 2.5rem;
+.h-48 {
+  height: 12rem;
 }
 .max-h-\[80vh\] {
   max-height: 80vh;
@@ -537,6 +540,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .min-h-screen {
   min-height: 100vh;
+}
+.min-h-\[75\%\] {
+  min-height: 75%;
 }
 .min-h-max {
   min-height: max-content;
@@ -742,6 +748,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
 }
+.rounded-tl-lg {
+  border-top-left-radius: 0.5rem;
+}
+.rounded-tr-lg {
+  border-top-right-radius: 0.5rem;
+}
 .rounded-tr-none {
   border-top-right-radius: 0px;
 }
@@ -760,9 +772,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-gray-800 {
   --tw-border-opacity: 1;
   border-color: rgb(31 41 55 / var(--tw-border-opacity));
-}
-.border-opacity-20 {
-  --tw-border-opacity: 0.2;
 }
 .border-opacity-10 {
   --tw-border-opacity: 0.1;
@@ -787,13 +796,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-bg-opacity: 1;
   background-color: rgb(30 58 138 / var(--tw-bg-opacity));
 }
+.bg-blue-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+}
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-.bg-white {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 .bg-gray-600 {
   --tw-bg-opacity: 1;
@@ -819,13 +828,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-bg-opacity: 1;
   background-color: rgb(156 163 175 / var(--tw-bg-opacity));
 }
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
 .bg-gray-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-}
-.bg-blue-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
 }
 .bg-blue-700 {
   --tw-bg-opacity: 1;
@@ -857,17 +866,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-opacity-10 {
   --tw-bg-opacity: 0.1;
 }
-.bg-opacity-20 {
-  --tw-bg-opacity: 0.2;
+.bg-opacity-70 {
+  --tw-bg-opacity: 0.7;
 }
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
 }
 .bg-opacity-40 {
   --tw-bg-opacity: 0.4;
-}
-.bg-opacity-70 {
-  --tw-bg-opacity: 0.7;
 }
 .bg-opacity-30 {
   --tw-bg-opacity: 0.3;
@@ -878,6 +884,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;
 }
+.bg-opacity-20 {
+  --tw-bg-opacity: 0.2;
+}
 .p-3 {
   padding: 0.75rem;
 }
@@ -887,11 +896,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .p-2 {
   padding: 0.5rem;
 }
-.p-20 {
-  padding: 5rem;
-}
 .p-1 {
   padding: 0.25rem;
+}
+.p-20 {
+  padding: 5rem;
 }
 .px-4 {
   padding-left: 1rem;
@@ -920,6 +929,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+.pt-10 {
+  padding-top: 2.5rem;
 }
 .text-left {
   text-align: left;
@@ -974,14 +986,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .capitalize {
   text-transform: capitalize;
 }
+.tracking-wider {
+  letter-spacing: 0.05em;
+}
 .tracking-wide {
   letter-spacing: 0.025em;
 }
 .tracking-widest {
   letter-spacing: 0.1em;
-}
-.tracking-wider {
-  letter-spacing: 0.05em;
 }
 .text-white {
   --tw-text-opacity: 1;
@@ -1080,6 +1092,15 @@ input{
   border-style: none;
 }
 
+.odd\:bg-black:nth-child(odd) {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
+.odd\:bg-opacity-30:nth-child(odd) {
+  --tw-bg-opacity: 0.3;
+}
+
 .checked\:bg-blue-500:checked {
   --tw-bg-opacity: 1;
   background-color: rgb(59 130 246 / var(--tw-bg-opacity));
@@ -1108,6 +1129,11 @@ input{
   background-color: rgb(75 85 99 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-black:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
 .hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1121,6 +1147,10 @@ input{
 .hover\:bg-blue-700:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-opacity-50:hover {
+  --tw-bg-opacity: 0.5;
 }
 
 .hover\:bg-opacity-100:hover {
@@ -1137,6 +1167,12 @@ input{
 
 .hover\:bg-opacity-30:hover {
   --tw-bg-opacity: 0.3;
+}
+
+.hover\:shadow-inner:hover {
+  --tw-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: inset 0 2px 4px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .hover\:drop-shadow-xl:hover {

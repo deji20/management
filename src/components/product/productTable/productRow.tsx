@@ -26,7 +26,7 @@ export default function ProductRow(props: {product: ProductModel}){
             </td>
             <td className="border-gray-800 border-r w-min">
                 <p>{
-                product?.version?.[0]?.amount || 0
+                product?.version.reduce<number>((prev, version)  => prev += version.amount, 0) || 0
                 }</p>
             </td>
             <td className="border-gray-800 border-r w-min">
