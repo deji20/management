@@ -19,7 +19,7 @@ export default function Image(props: ImageProps){
         if(typeof props.pictures[imageNr] === "string") image = <img src={`${props.pictures[imageNr]}`} alt={"straight"} onClick={props.onClick} className={`place-self-center max-h-full ${props.onClick && "cursor-pointer"}`}/>
         else{
             const img = props.pictures[imageNr] as Picture;
-            image = <img src={img.path} alt={img.alt} onClick={props.onClick} className={`place-self-center max-h-full ${props.onClick && "cursor-pointer"}`}/>
+            image = <img src={"http://localhost/api" + img.path} alt={img.alt} onClick={props.onClick} className={`place-self-center max-h-full ${props.onClick && "cursor-pointer"}`}/>
         }
     }
     else{ 
