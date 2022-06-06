@@ -47,7 +47,7 @@ export default function TicketsPage(){
                     {
                     tickets?.filter(ticket => !filter || ticket.type === filter).map((ticket, i) => {
                         return (
-                            <tr onClick={(event) => {event.preventDefault(); ticket._id && openDetail(ticket._id)}} className={`text-white  border-b last:rounded-xl last:border-none hover:bg-gray-600 cursor-pointer`}>
+                            <tr onClick={(event) => {event.preventDefault(); ticket.id && openDetail(ticket.id)}} className={`text-white  border-b last:rounded-xl last:border-none hover:bg-gray-600 cursor-pointer`}>
                                 <td className="p-3">
                                     {ticket.type}
                                 </td>
@@ -66,7 +66,7 @@ export default function TicketsPage(){
                                 <td className="w-16 px-4">
                                     <Image onClick={(event) => {
                                         event.preventDefault();
-                                        ticket._id && api.delete("/ticket", ticket._id)
+                                        ticket.id && api.delete("/ticket", ticket.id)
                                             .then(() => {
                                                 api.get<Ticket[]>("/ticket").then((res) => {
                                                     setTickets(res)

@@ -16,9 +16,12 @@ export default function ProductRow(props: {product: ProductModel}){
 
     return (
         <tr 
-            onClick={() => product._id && nav(product._id)}
-            className="my-1 place-items-center h-min border-gray-800 text-white text-center cursor-pointer font-light border-t bg-opacity-20 bg-gray-500  hover:bg-opacity-30 first:border-t-none ">
-            <td className="border-gray-800 border-r">
+            onClick={() => product.id && nav(product.id)}
+            className="my-1 child:border-gray-800 child:border-r place-items-center h-min border-gray-800 text-white text-center cursor-pointer font-light border-t bg-opacity-20 bg-gray-500  hover:bg-opacity-30 first:border-t-none ">
+            <td className="w-min">
+                <p>{product.id}</p>
+            </td>
+            <td className="">
                     <p>{product.name}</p>
             </td>
             <td className="border-gray-800 border-r">
@@ -28,9 +31,6 @@ export default function ProductRow(props: {product: ProductModel}){
                 <p>{
                 product?.version.reduce<number>((prev, version)  => prev += version.amount, 0) || 0
                 }</p>
-            </td>
-            <td className="border-gray-800 border-r w-min">
-                <p></p>
             </td>
             <td className="border-gray-800 border-r">
                 <div className="flex justify-center flex-wrap">

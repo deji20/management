@@ -63,8 +63,8 @@ export default function ProductDetailsPage(props: any){
                     <button 
                         className="bg-red-800 w-10 bg-opacity-50 hover:bg-opacity-100 rounded transition-all duration-300" 
                         onClick={async () => {
-                            if(product._id){
-                                let result = await Api.delete("/product", product._id)
+                            if(product.id){
+                                let result = await Api.delete("/product", product.id)
                                 nav("/products")
                             }}
                         }>
@@ -73,7 +73,7 @@ export default function ProductDetailsPage(props: any){
                     <button 
                         className="bg-blue-800 w-10 bg-opacity-50 hover:bg-opacity-100 rounded mx-5 transition-all duration-300" 
                         onClick={() => {
-                                if(product._id) Api.patch<ProductModel>("/product", product._id, product).then(res => res && setProduct(res));
+                                if(product.id) Api.patch<ProductModel>("/product", product.id, product).then(res => res && setProduct(res));
                                 else Api.post<ProductModel>("/product", product).then(res => res && setProduct(res));
                             }}>
                         <Image className="flex p-1" pictures={["/api/icons/save.svg"]}/>

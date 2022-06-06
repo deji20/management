@@ -2,6 +2,7 @@ import { Customer } from "./customer";
 import { ProductModel } from "./productModel";
 
 export interface Order{
+    id: string,
     customer?: Customer,
     paymentId: string,
     created?: Date,
