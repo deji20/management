@@ -57,7 +57,7 @@ export default function ProductDetailsPage(props: any){
         return JSON.parse(JSON.stringify(obj)) as T;
     }
     return (
-        <div className="bg-gray-800 min-h-screen w-screen flex align-middle flex-col">
+        <div className="bg-blue-500 min-h-screen w-screen flex align-middle flex-col">
             <NavBar back="/products">
                 <div className="flex flex-row justify-end p-1">
                     <button 

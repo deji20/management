@@ -4,7 +4,7 @@ import Image from "../Image";
 interface navProps{
     back?: string;
     className?: string;
-    children: any;
+    children?: any;
 }
 export default function NavBar(props: navProps){
     return (

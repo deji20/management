@@ -2,7 +2,6 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Api from "../../api/api";
-import ActionButton from "../../components/buttons/actionButton";
 import NavBar from "../../components/navigation/navBar";
 import HeaderField from "../../components/table/headerField";
 import { Filter, FilterField } from "../../models/filter";
@@ -52,8 +51,8 @@ export default function OrdersPage(){
                             {orders.filter((o) => filter.every<Order>(o)).map((order, i) => {
                                 return (
                                     <tr key={i}
-                                        onClick={() => order.id && nav(order.id)}  
-                                        className="h-10 text-center odd:bg-black odd:bg-opacity-30 hover:bg-black hover:shadow-inner cursor-pointer hover:bg-opacity-50">
+                                    onClick={() =>  nav("./"+order.id)}  
+                                    className="h-10 text-center odd:bg-black odd:bg-opacity-30 hover:bg-black hover:shadow-inner cursor-pointer hover:bg-opacity-50">
                                         <td className="px-5 border-r border-opacity-10">{order.id}</td>
                                         <td className="border-r border-opacity-10">{order.customer?.privatePerson.firstName} {order.customer?.privatePerson.lastName}</td>
                                         <td className="border-r border-opacity-10">{order.customer?.shippingAddress?.addressLine1}</td>
