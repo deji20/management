@@ -16,7 +16,7 @@ export default function OrderDetails(){
 
     if(!order && !error) return <p>loading</p> 
     return (
-        <div className="w-screen min-h-screen bg-blue-500">
+        <div className="w-screen min-h-screen bg-gray-700 ">
             <NavBar back="/orders"></NavBar>
             <div className="m-auto flex flex-grow pt-10">
                 <div className=" pt-0 m-auto w-2/3 h-full  rounded-b-lg bg-white shadow-2xl bg-opacity-80 text-white">
@@ -91,23 +91,22 @@ export default function OrderDetails(){
                             </div>
                         </div>
                     </div>
-                    <div className="bg-black bg-opacity-20">
+                    <div className="bg-black bg-opacity-50 px-10">
+                       <p className="text-xl">Status: <b className="">{order?.status}</b></p>
+                    </div>
+                    <div className="bg-black bg-opacity-20 flex justify-end">
+                        <button className="bg-blue-700 bg-opacity-70"></button>
                         <button 
-                            className="bg-red-800 w-10 bg-opacity-50 hover:bg-opacity-100 rounded transition-all duration-300" 
+                            className="bg-red-800 w-10 m-auto my-5 bg-opacity-50 hover:bg-opacity-100 rounded transition-all duration-300" 
                             onClick={async () => {
                                 if(order?.id != null){
                                     let result = await api.delete("/order", order?.id)
-                                    console.log(result);
                                     nav("/orders")
                                 }}
                             }>
                             <Image className="flex p-1" pictures={["/api/icons/trash.svg"]}/>
                         </button>
                         <button className="bg-blue-700 bg-opacity-70"></button>
-                        <button className="bg-blue-700 bg-opacity-70"></button>
-                    </div>
-                    <div className="bg-black bg-opacity-20 px-10">
-                       <p className="text-lg">Status: <b className="">{order?.status}</b></p>
                     </div>
                 </div>
             </div>
