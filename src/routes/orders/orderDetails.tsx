@@ -95,7 +95,9 @@ export default function OrderDetails(){
                        <p className="text-xl">Status: <b className="">{order?.status}</b></p>
                     </div>
                     <div className="bg-black bg-opacity-20 flex justify-end">
-                        <button className="bg-blue-700 bg-opacity-70"></button>
+                        <button className="bg-blue-700 bg-opacity-70">
+                            <p>Ordre er afsendt</p>
+                        </button>
                         <button 
                             className="bg-red-800 w-10 m-auto my-5 bg-opacity-50 hover:bg-opacity-100 rounded transition-all duration-300" 
                             onClick={async () => {
@@ -106,7 +108,9 @@ export default function OrderDetails(){
                             }>
                             <Image className="flex p-1" pictures={["/api/icons/trash.svg"]}/>
                         </button>
-                        <button className="bg-blue-700 bg-opacity-70"></button>
+                        <button className="bg-blue-700 bg-opacity-70">
+                            Fortryd Køb
+                        </button>
                     </div>
                 </div>
             </div>
