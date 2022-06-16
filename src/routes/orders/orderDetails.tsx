@@ -94,21 +94,21 @@ export default function OrderDetails(){
                     <div className="bg-black bg-opacity-50 px-10">
                        <p className="text-xl">Status: <b className="">{order?.status}</b></p>
                     </div>
-                    <div className="bg-black bg-opacity-20 flex justify-end">
+                    <div className="bg-black bg-opacity-20 flex justify-center">
                         <div>
                             <button className="m-auto p-5 bg-green-500 bg-opacity-70">
                                 <p>Ordre er afsendt</p>
                             </button>
                         </div>
-                        
+
                         <div>
-                            <button className="m-auto p-5 bg-blue-500 bg-opacity-70">
+                            <button className="m-auto p-5 bg-red-500 bg-opacity-70">
                                 Fortryd Køb
                             </button>
                         </div>
 
                         <button 
-                            className="bg-red-800 w-10 m-auto my-5 bg-opacity-50 hover:bg-opacity-100 rounded transition-all duration-300" 
+                            className=" w-10 m-auto my-5 bg-opacity-50 hover:bg-opacity-100 rounded transition-all duration-300" 
                             onClick={async () => {
                                 if(order?.id != null){
                                     let result = await api.delete("/order", order?.id)
