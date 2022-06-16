@@ -9,13 +9,13 @@ interface SectionProps{
 
 function Section(props: SectionProps) {
     return (
-        <div className="Section">
-            <div className="Section-Title">
-                <Link to={props.href}>
-                    <h2>{props.title}</h2>
-                </Link>
+        <Link to={props.href}>
+            <div className="Section">
+                <div className="Section-Title">
+                        <h2>{props.title}</h2>
+                </div>
             </div>
-        </div>
+        </Link>
       );
 }
 
