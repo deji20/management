@@ -108,7 +108,7 @@ export default function OrderDetails(){
                         </div>
 
                         <button 
-                            className=" w-10 m-auto my-5 bg-opacity-50 hover:bg-opacity-100 rounded transition-all duration-300" 
+                            className=" w-10 m-auto bg-opacity-50 hover:bg-opacity-100 rounded transition-all duration-300" 
                             onClick={async () => {
                                 if(order?.id != null){
                                     let result = await api.delete("/order", order?.id)
