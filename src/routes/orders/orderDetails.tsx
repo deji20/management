@@ -5,7 +5,7 @@ import useSWR from "swr";
 import api from "../../api/api";
 import Image from "../../components/Image";
 import NavBar from "../../components/navigation/navBar";
-import { Order } from "../../models/order";
+import { Order, OrderStatus } from "../../models/order";
 
 export default function OrderDetails(){
     //get id from url parameter
@@ -102,8 +102,15 @@ export default function OrderDetails(){
                         </div>
 
                         <div>
-                            <button className="m-auto shadow-2xl p-5 bg-red-500 bg-opacity-70">
-                                Fortryd Køb
+                            <button
+                                onClick={async () => {
+                                    if(order){
+                                        order.status = OrderStatus.CANCELLED;
+                                        let result = await api.patch("/order", order.id, order)
+                                    }
+                                }} 
+                                className="m-auto shadow-2xl p-5 bg-red-500 bg-opacity-70">
+                                Annuller Køb
                             </button>
                         </div>
 
