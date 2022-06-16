@@ -20,7 +20,7 @@ export default function OrderDetails(){
             <NavBar back="/orders"></NavBar>
             <div className="m-auto flex flex-grow pt-10">
                 <div className=" pt-0 m-auto w-2/3 h-full  rounded-b-lg bg-white shadow-2xl bg-opacity-80 text-white">
-                    <div className="bg-black flex flex-row justify-center gap-2 shadow-lg p-4 bg-opacity-30">
+                    <div className="bg-black flex flex-row justify-evenly gap-2 shadow-lg p-4 bg-opacity-30">
                         <div className="text-white text-xl my-auto">
                             <h1>Order {order?.id}</h1>
                         </div>
@@ -94,7 +94,7 @@ export default function OrderDetails(){
                     <div className="bg-black bg-opacity-50 px-10">
                        <p className="text-xl">Status: <b className="">{order?.status}</b></p>
                     </div>
-                    <div className="bg-black bg-opacity-20 p-5 flex justify-center">
+                    <div className="bg-black bg-opacity-20 p-5 flex gap-4 justify-center">
                         <div>
                             <button className="m-auto shadow-2xl p-5 bg-green-500 bg-opacity-70">
                                 <p>Ordre er afsendt</p>
