@@ -3,6 +3,7 @@ import { Picture } from "../models/productModel";
 
 interface ImageProps{
     className?: string;
+    local?: boolean;
     pictures?: Picture[] | string[];
     onClick?: MouseEventHandler<HTMLImageElement>;
     onChange?: (picture: Picture | string, index: number) => void;
@@ -19,7 +20,7 @@ export default function Image(props: ImageProps){
         if(typeof props.pictures[imageNr] === "string") image = <img src={`${props.pictures[imageNr]}`} alt={"straight"} onClick={props.onClick} className={`place-self-center max-h-full ${props.onClick && "cursor-pointer"}`}/>
         else{
             const img = props.pictures[imageNr] as Picture;
-            image = <img src={"/api/" + img.path} alt={img.alt} onClick={props.onClick} className={`place-self-center max-h-full ${props.onClick && "cursor-pointer"}`}/>
+            image = <img src={!props.local ? "/api/" + img.path : img.path} alt={img.alt} onClick={props.onClick} className={`place-self-center max-h-full ${props.onClick && "cursor-pointer"}`}/>
         }
     }
     else{ 
@@ -32,7 +33,7 @@ export default function Image(props: ImageProps){
     
     
     return (
-        <div className={`relative flex h-full w-full ${props.className}`}>
+        <div className={`relative justify-center flex h-full w-full ${props.className}`}>
             <div className="absolute bottom-4 w-full flex flex-row justify-center">
                 {props.pictures && props.pictures.length > 1 && props.pictures.map((image, i) => {
                     return (<div key={i} className="p-2 mx-2 rounded-full bg-opacity-60 bg-black transition-all hover:bg-white hover:scale-150 hover:bg-opacity-100" 

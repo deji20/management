@@ -80,7 +80,7 @@ export default function ImageInput(props: InputProps){
             </div>
             <input type="file" multiple={props.multiple} ref={inputRef} className="absolute w-full h-full hidden" onChange={fileUploadedEvent}/>
             { images.map( (imageInput, i) => <input name={props.inputName} key={i} type="hidden" value={JSON.stringify(imageInput)} /> ) }
-            <Image className="place-self-center" pictures={images} onChange={(pic, i) => setImageNr(i)} onClick={uploadFileEvent}/>
+            <Image local={images[imageNr] && images[imageNr].path.includes("data:image")} className="place-self-center" pictures={images} onChange={(pic, i) => setImageNr(i)} onClick={uploadFileEvent}/>
         </div>
     )
 }

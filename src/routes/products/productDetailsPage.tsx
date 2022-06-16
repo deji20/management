@@ -82,7 +82,7 @@ export default function ProductDetailsPage(props: any){
             </NavBar>
             <div className="flex md:p-20 w-2/3 place-self-center">
                 <div className="w-full h-full relative grid grid-cols-4 md:grid-cols-8 bg-gray-100 rounded rounded-tr-none shadow-2xl">
-                    <div className="flex flex-1 flex-col col-span-3 h-full">
+                    <div className="flex flex-1 flex-col col-span-4 md:grid-cols-4 h-full">
                         <div className="flex justify-center h-64 w-full">
                             <ImageInput 
                                 onInput={
@@ -119,7 +119,7 @@ export default function ProductDetailsPage(props: any){
                         </div>
                     </div>
 
-                    <div className="place-self-start justify-between flex flex-col rounded col-span-5 h-full w-full px-2">
+                    <div className="place-self-start justify-between flex flex-col rounded col-span-4 h-full w-full px-2">
                         <div className="flex flex-col m-2">
                             <label className="text-slate-700 font-semibold text-lg">Navn</label>
                             <input 
