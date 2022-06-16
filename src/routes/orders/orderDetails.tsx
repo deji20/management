@@ -94,15 +94,15 @@ export default function OrderDetails(){
                     <div className="bg-black bg-opacity-50 px-10">
                        <p className="text-xl">Status: <b className="">{order?.status}</b></p>
                     </div>
-                    <div className="bg-black bg-opacity-20 flex justify-center">
+                    <div className="bg-black bg-opacity-20 p-5 flex justify-center">
                         <div>
-                            <button className="m-auto p-5 bg-green-500 bg-opacity-70">
+                            <button className="m-auto shadow-2xl p-5 bg-green-500 bg-opacity-70">
                                 <p>Ordre er afsendt</p>
                             </button>
                         </div>
 
                         <div>
-                            <button className="m-auto p-5 bg-red-500 bg-opacity-70">
+                            <button className="m-auto shadow-2xl p-5 bg-red-500 bg-opacity-70">
                                 Fortryd Køb
                             </button>
                         </div>
