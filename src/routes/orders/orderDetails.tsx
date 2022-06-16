@@ -20,7 +20,7 @@ export default function OrderDetails(){
             <NavBar back="/orders"></NavBar>
             <div className="m-auto flex flex-grow pt-10">
                 <div className=" pt-0 m-auto w-2/3 h-full  rounded-b-lg bg-white shadow-2xl bg-opacity-80 text-white">
-                    <div className="bg-black flex flex-row justify-between shadow-lg p-4 bg-opacity-30">
+                    <div className="bg-black flex flex-row justify-center gap-2 shadow-lg p-4 bg-opacity-30">
                         <div className="text-white text-xl my-auto">
                             <h1>Order {order?.id}</h1>
                         </div>
